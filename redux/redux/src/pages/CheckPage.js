@@ -4,6 +4,7 @@ function CheckPage({
     name,
     phone,
     info,
+    setPage,
 }) {
 
     return (

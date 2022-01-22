@@ -9,7 +9,7 @@ function RaddioButtons({
         display: 'flex',
     }
     const onChange = (e) => {
-        setData(e.target.value);
+        setData(dataList, e.target.value);
     };
     return (
         <div style={radioBtnStyle}>

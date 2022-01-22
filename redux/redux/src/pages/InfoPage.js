@@ -1,65 +1,42 @@
 import React from "react";
+import Info from "../components/Info";
 import MoveNextPage from "../components/MoveNextPage";
 import MovePrevPage from "../components/MovePrevPage";
 import { getLists } from "../functions/getLists";
-import RaddioButtons from "../libs/RadioButtons";
+import { useDispatch } from "react-redux";
+import { setGender, setAge, setPrice } from '../modules/info'
 
 function InfoPage({
-    setPage,
     info,
-    dispatch,
+    setPage,
 }) {
 
     const [genderList, ageList, priceList] = getLists();
 
-    const setGender = (seq) => {
-        const found = genderList.find((el) => {
-            return el.seq === seq;
-        });
-        dispatch({
-            type: 'SET_GENDER',
-            gender: found.value,
-            genderIdx: found.seq,
-        })
-    }
-
-    const setAge = (seq) => {
-        const found = ageList.find((el) => {
-            return el.seq === seq;
-        });
-        dispatch({
-            type: 'SET_AGE',
-            age: found.value,
-            ageIdx: found.seq,
-        })
-    }
-
-    const setPrice = (seq) => {
-        const found = priceList.find((el) => {
-            return el.seq === seq;
-        });
-        dispatch({
-            type: 'SET_PRICE',
-            price: found.value,
-            priceIdx: found.seq,
-        })
-    }
+    const dispatch = useDispatch();
+    const onSetGender = (attrList, seq) => dispatch(setGender(attrList, seq));
+    const onSetAge = (attrList, seq) => dispatch(setAge(attrList, seq));
+    const onSetPrice = (attrList, seq) => dispatch(setPrice(attrList, seq));
 
     return (
         <>
             <h1> Info Page 입니다. </h1>
-            <RaddioButtons
+            <Info
                 dataList={genderList}
-                setData={setGender}
-                isChecked={info.gender_idx}/>
-            <RaddioButtons
+                setData={onSetGender}
+                isChecked={info.genderIdx}>
+            </Info>
+            <Info
                 dataList={ageList}
-                setData={setAge}
-                isChecked={info.age_idx}/>
-            <RaddioButtons
+                setData={onSetAge}
+                isChecked={info.ageIdx}>
+            </Info>
+            <Info
                 dataList={priceList}
-                setData={setPrice}
-                isChecked={info.price_idx}/>
+                setData={onSetPrice}
+                isChecked={info.priceIdx}>
+            </Info>
+
             <div>
                 <MovePrevPage
                     prevPage="input_page"

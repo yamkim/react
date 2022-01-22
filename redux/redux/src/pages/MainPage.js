@@ -6,40 +6,8 @@ import { useNavigate } from "react-router";
 import MovePrevNavigate from "../components/MovePrevNavigate";
 import useInputs from "../hooks/useInputs";
 import CheckPage from "./CheckPage";
+import { useSelector } from "react-redux";
 
-const initInfo = {
-    gender: '',
-    gender_idx: 0,
-    age: '',
-    age_idx: 0,
-    price: '',
-    price_idx: 0,
-};
-
-function reducer(state, action) {
-    switch (action.type) {
-        case 'SET_GENDER':
-            return {
-                ...state,
-                gender: action.gender,
-                gender_idx: action.genderIdx,
-            }
-        case 'SET_AGE':
-            return {
-                ...state,
-                age: action.age,
-                age_idx: action.ageIdx,
-            }
-        case 'SET_PRICE':
-            return {
-                ...state,
-                price: action.price,
-                price_idx: action.priceIdx,
-            }
-        default:
-            return state;
-    }
-}
 
 function MainPage() {
     const [page, setPage] = useState('main_page');
@@ -48,10 +16,12 @@ function MainPage() {
         name: '',
         phone: '',
     });
-    const [info, dispatch] = useReducer(reducer, initInfo)
+    const { info } = useSelector(state => ({
+        info: state.info,
+    }));
 
-    console.log("info 정보==========================");
-    console.log(info);
+    console.log("info 값===============================")
+    console.log(info)
 
     if (page === 'input_page') {
         return (
@@ -65,20 +35,17 @@ function MainPage() {
         return (
             <InfoPage
                 info={info}
-                dispatch={dispatch}
                 setPage={setPage}/>
         )
     } else if (page === 'check_page') {
         return (
             <CheckPage
-                info={info}
                 name={name}
                 phone={phone}
-                dispatch={dispatch}
+                info={info}
                 setPage={setPage}/>
         )
     }
-
     return (
         <>
             <h1> Main Page 입니다. </h1>
