@@ -11,9 +11,9 @@ function IndexPage() {
             <h1> Index Page 입니다. </h1>
             <MoveNextHistory
                 history={history}
-                nextPage="/main"
+                nextPage="/login"
             >
-                main page로
+                로그인 페이지로
             </MoveNextHistory>
 
         </>

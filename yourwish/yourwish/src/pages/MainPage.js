@@ -3,10 +3,9 @@ import MoveNextPage from "../components/MoveNextPage";
 import InputPage from "./InputPage";
 import SelectorPage from "./SelectorPage";
 import { useHistory } from 'react-router';
-import MovePrevNavigate from "../components/MovePrevHistory";
 import useInputs from "../hooks/useInputs";
-import CheckPage from "./CheckPage";
-import { useSelector } from "react-redux";
+import CheckPage from "./CheckPage"; import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function MainPage() {
     const [page, setPage] = useState('main_page');
@@ -51,10 +50,9 @@ function MainPage() {
         <>
             <h1> Main Page 입니다. </h1>
             <div>
-                <MovePrevNavigate
-                    history={history}>
-                    이전 페이지
-                </MovePrevNavigate>
+                <Link to="/">
+                    인덱스 페이지로
+                </Link>
                 <MoveNextPage
                     nextPage="input_page"
                     setPage={setPage}>
