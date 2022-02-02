@@ -3,7 +3,7 @@ import React from "react";
 function CheckPage({
     name,
     phone,
-    info,
+    selector,
     setPage,
 }) {
 
@@ -18,13 +18,13 @@ function CheckPage({
                     {phone}
                 </li>
                 <li>
-                    {info.gender}
+                    {selector.gender}
                 </li>
                 <li>
-                    {info.age}
+                    {selector.age}
                 </li>
                 <li>
-                    {info.price}
+                    {selector.price}
                 </li>
             </ul>
         </>

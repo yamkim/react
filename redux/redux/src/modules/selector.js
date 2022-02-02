@@ -1,6 +1,6 @@
-const SET_GENDER = 'info/SET_GENDER';
-const SET_AGE = 'info/SET_AGE';
-const SET_PRICE = 'info/SET_PRICE';
+const SET_GENDER = 'selector/SET_GENDER';
+const SET_AGE = 'selector/SET_AGE';
+const SET_PRICE = 'selector/SET_PRICE';
 
 const initState = {
     gender: '',
@@ -49,7 +49,7 @@ export function setPrice(attrList, seq) {
     })
 }
 
-export default function info(state = initState, action) {
+export default function selector(state = initState, action) {
     switch (action.type) {
         case SET_GENDER:
             return {

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import info from './info';
+import selector from './selector';
 
 const rootReducer = combineReducers({
-    info,
+    selector,
 });
 
 export default rootReducer;

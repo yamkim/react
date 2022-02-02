@@ -1,7 +1,7 @@
 import React, { useReducer, useState } from "react";
 import MoveNextPage from "../components/MoveNextPage";
 import InputPage from "./InputPage";
-import InfoPage from "./InfoPage";
+import SelectorPage from "./SelectorPage";
 import { useNavigate } from "react-router";
 import MovePrevNavigate from "../components/MovePrevNavigate";
 import useInputs from "../hooks/useInputs";
@@ -16,12 +16,12 @@ function MainPage() {
         name: '',
         phone: '',
     });
-    const { info } = useSelector(state => ({
-        info: state.info,
+    const { selector } = useSelector(state => ({
+        selector: state.selector,
     }));
 
-    console.log("info 값===============================")
-    console.log(info)
+    console.log("selector 값===============================")
+    console.log(selector)
 
     if (page === 'input_page') {
         return (
@@ -33,8 +33,8 @@ function MainPage() {
         )
     } else if (page === 'info_page') {
         return (
-            <InfoPage
-                info={info}
+            <SelectorPage
+                selector={selector}
                 setPage={setPage}/>
         )
     } else if (page === 'check_page') {
@@ -42,7 +42,7 @@ function MainPage() {
             <CheckPage
                 name={name}
                 phone={phone}
-                info={info}
+                selector={selector}
                 setPage={setPage}/>
         )
     }
