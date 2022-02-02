@@ -1,4 +1,5 @@
 import { useReducer, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function reducer(state, action) {
     switch (action.type) {
@@ -26,6 +27,7 @@ function reducer(state, action) {
 }
 
 function useAsync(callback, deps = [], callbackParam = null) {
+    // const history = useHistory();
     const [state, dispatch] = useReducer(reducer, {
         loading: false,
         data: null,
@@ -35,9 +37,27 @@ function useAsync(callback, deps = [], callbackParam = null) {
         dispatch({ type: 'LOADING' });
         try {
             const data = await callback(callbackParam);
+            console.log("THIS IS USEASYNC====================")
             dispatch({ type: 'SUCCESS', data: data });
         } catch (err) {
-            dispatch({ type: 'ERROR', error: err });
+            if (err.response.status === 419) {
+                return (
+                    <Link to='/auths/token/refresh'/>
+                )
+            } else if (err.response.status === 500) {
+                alert('서버 오류입니다.')
+                return (
+                    <Link to='/'/>
+                )
+            } else {
+                return (
+                    <Link to='/main'/>
+                )
+            }
+            // if (err.response.status === 419) {
+            //     history.push('/auths/token/refresh');
+            // }
+            // dispatch({ type: 'ERROR', error: err });
         }
     };
     useEffect(() => {

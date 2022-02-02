@@ -4,6 +4,8 @@ import IndexPage from './pages/IndexPage';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import HandleSnsLogin from './apis/HandleSnsLogin';
+import PrivateRoute from './components/PrivateRoute';
+import RenewTokens from './apis/RenewToken';
 
 function App() {
     return (
@@ -16,7 +18,8 @@ function App() {
                     component={() => {
                         return <HandleSnsLogin sns={'kakao'}/>;
                     }}/>;
-                <Route exact path='/main' component={MainPage}/>
+                <PrivateRoute exact path='/main' component={MainPage}/>
+                <PrivateRoute exact path="/auths/token/refresh" component={RenewTokens}/>
             </Switch>
         </BrowserRouter>
     );

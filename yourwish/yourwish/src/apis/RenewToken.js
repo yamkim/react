@@ -2,7 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import axios from 'axios';
 import useAsync from '../hooks/useAsync';
-import { useAlertModalDispatch } from '../../common/AlertModal.Context';
 
 async function renewTokens() {
     const refreshToken = localStorage.getItem('refresh_token');
@@ -47,12 +46,13 @@ function RenewTokens() {
     if (data) {
         localStorage.setItem('access_token', data.access_token);
         localStorage.setItem('refresh_token', data.refresh_token);
+        alert('토큰을 갱신했습니다.')
         history.push({
             pathname: '/main',
         });
     }
     return (
-        <div/>
+        <></>
     );
 }
 

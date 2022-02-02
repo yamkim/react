@@ -6,10 +6,15 @@ import { useHistory } from 'react-router';
 import useInputs from "../hooks/useInputs";
 import CheckPage from "./CheckPage"; import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { readAttrs } from "../AsyncFunc/readAttrs"
+import useAsync from "../hooks/useAsync";
 
 function MainPage() {
     const [page, setPage] = useState('main_page');
-    const history = useHistory();
+    const [state, refetch] = useAsync(readAttrs, [], null);
+    const attrs = state.data?.attrs;
+    console.log("data:", attrs)
+
     const [{name, phone}, onChange, reset] = useInputs({
         name: '',
         phone: '',
@@ -21,7 +26,6 @@ function MainPage() {
     // MainPage가 렌더링될 때, dataList들을 받아와야합니다.
     console.log("selector 값===============================")
     console.log(selector)
-
     if (page === 'input_page') {
         return (
             <InputPage
@@ -53,11 +57,13 @@ function MainPage() {
                 <Link to="/">
                     인덱스 페이지로
                 </Link>
-                <MoveNextPage
-                    nextPage="input_page"
-                    setPage={setPage}>
-                    다음 페이지
-                </MoveNextPage>
+                {attrs && (
+                    <MoveNextPage
+                        nextPage="input_page"
+                        setPage={setPage}>
+                        다음 페이지
+                    </MoveNextPage>
+                )}
             </div>
         </>
     )
