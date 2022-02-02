@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import MoveNextPage from "../components/MoveNextPage";
 import InputPage from "./InputPage";
 import SelectorPage from "./SelectorPage";
@@ -7,7 +7,6 @@ import MovePrevNavigate from "../components/MovePrevNavigate";
 import useInputs from "../hooks/useInputs";
 import CheckPage from "./CheckPage";
 import { useSelector } from "react-redux";
-
 
 function MainPage() {
     const [page, setPage] = useState('main_page');
@@ -20,6 +19,7 @@ function MainPage() {
         selector: state.selector,
     }));
 
+    // MainPage가 렌더링될 때, dataList들을 받아와야합니다.
     console.log("selector 값===============================")
     console.log(selector)
 
