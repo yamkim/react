@@ -8,6 +8,9 @@ function InputPage({
     phone,
     onChange
 }) {
+    const styleInputPair = {
+        display: "flex",
+    }
 
     return (
         <>
@@ -15,23 +18,24 @@ function InputPage({
             <div>
                 사용자의 이름과 번호를 입력해주세요.
             </div>
-            <div>
+            <div style={styleInputPair}>
                 <input
                     name="name"
                     type="text"
-                    plcaeholder="이름"
+                    placeholder="이름"
                     onChange={onChange}
-                    value={name}>
-                </input>
+                    value={name}/>
+                    {name && (
+                        <div className="call-style">님</div>
+                    )}
             </div>
             <div>
                 <input
                     name="phone"
                     type="text"
-                    plcaeholder="번호"
+                    placeholder="번호"
                     onChange={onChange}
-                    value={phone}>
-                </input>
+                    value={phone}/>
             </div>
             <div>
                 <MovePrevPage

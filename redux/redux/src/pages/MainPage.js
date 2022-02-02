@@ -26,10 +26,11 @@ function MainPage() {
     if (page === 'input_page') {
         return (
             <InputPage
-                setPage={setPage}
                 name={name}
                 phone={phone}
-                onChange={onChange}/>
+                onChange={onChange}
+                setPage={setPage}
+                />
         )
     } else if (page === 'info_page') {
         return (
