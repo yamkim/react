@@ -5,7 +5,7 @@ function MovePrevPage({
     setPage,
     children,
 }) {
-    console.log(prevPage)
+    console.log("MovePrevPage")
     function goBack() {
         setPage(prevPage);
     }

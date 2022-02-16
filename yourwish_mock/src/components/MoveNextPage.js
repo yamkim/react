@@ -5,6 +5,7 @@ function MoveNextPage({
     setPage,
     children,
 }) {
+    console.log("MoveNextPage")
     function goNext () {
         setPage(nextPage);
     }

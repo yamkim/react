@@ -8,6 +8,7 @@ function InputPage({
     phone,
     onChange
 }) {
+    console.log("InputPage")
     const styleInputPair = {
         display: "flex",
     }

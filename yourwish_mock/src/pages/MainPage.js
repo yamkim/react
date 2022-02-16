@@ -11,9 +11,9 @@ import useAsync from "../hooks/useAsync";
 
 function MainPage() {
     const [page, setPage] = useState('main_page');
+    // NOTE: readAttrs는 한 번만 랜더링됩니다.
     const [state, refetch] = useAsync(readAttrs, [], null);
     const attrs = state.data?.attrs;
-    console.log("data:", attrs)
 
     const [{name, phone}, onChange, reset] = useInputs({
         name: '',
@@ -22,18 +22,16 @@ function MainPage() {
     const { selector } = useSelector(state => ({
         selector: state.selector,
     }));
+    console.log("MainPage")
 
     // MainPage가 렌더링될 때, dataList들을 받아와야합니다.
-    console.log("selector 값===============================")
-    console.log(selector)
     if (page === 'input_page') {
         return (
             <InputPage
                 name={name}
                 phone={phone}
                 onChange={onChange}
-                setPage={setPage}
-                />
+                setPage={setPage} />
         )
     } else if (page === 'info_page') {
         return (
