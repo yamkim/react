@@ -10,5 +10,7 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-  }
+    "jsxImportSource": "@emotion/react" ,
+  },
+  "include": ["src", "types"],
 }
