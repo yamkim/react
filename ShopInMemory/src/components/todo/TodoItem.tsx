@@ -14,7 +14,7 @@ interface CheckCircleProps {
     $isDone: boolean
 }
 const CheckCircle = tw.div<CheckCircleProps>`
-    flex w-7 h-7
+    flex w-7 aspect-square
     border-2 rounded-full
     text-xl items-center justify-center
     cursor-pointer
