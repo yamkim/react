@@ -1,5 +1,6 @@
 import React from "react";
 import tw, { css } from "twin.macro";
+import { useTodoState } from "./TodoContext";
 import TodoItem from "./TodoItem";
 
 const TodoListBlock = tw.div`
@@ -9,20 +10,19 @@ const TodoListBlock = tw.div`
 `
 
 const TodoList = () => {
-    return (
-        <TodoListBlock >
-            <TodoItem
-                id={1}
-                text="프로젝트 생성하기"
-                isDone={true}
-            />
-            <TodoItem
-                id={2}
-                text="프로젝트 생성하기"
-                isDone={false}
-            />
-        </TodoListBlock>
-    );
+  const todoList = useTodoState()
+  return (
+    <TodoListBlock >
+      {todoList?.map(todo => (
+        <TodoItem
+          key={todo.id}
+          id={todo.id}
+          text={todo.text}
+          isDone={todo.isDone}
+        />
+      ))}
+    </TodoListBlock>
+  );
 };
 
 export default TodoList;

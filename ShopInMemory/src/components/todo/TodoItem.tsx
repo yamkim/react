@@ -2,6 +2,7 @@ import React from "react";
 // import tw, { css } from "twin.macro";
 import tw from "tailwind-styled-components";
 import { IoCheckmark, IoTrashSharp } from 'react-icons/io5';
+import { useTodoDispatch } from "./TodoContext";
 
 type Props = {
     id: number;
@@ -51,16 +52,19 @@ const TodoItemBlock = tw.div`
 `
 
 const TodoItem = ({id, text, isDone}: Props) => {
-    console.log(text);
+    console.log(id, text, isDone);
+    const dispatch = useTodoDispatch();
+    const onToggle = ()  => dispatch?.({ type: 'TOGGLE', id, isDone});
+    const onRemove = () => dispatch?.({ type: 'REMOVE', id: id });
     return (
         <TodoItemBlock>
-            <CheckCircle $isDone={true}>
+            <CheckCircle $isDone={true} onClick={onToggle}>
                 {isDone && <IoCheckmark/>}
             </CheckCircle>
             <Text>
                 {text}
             </Text>
-            <Remove>
+            <Remove onClick={onRemove}>
                 <IoTrashSharp className="group-hover/trashcan:visible"/>
             </Remove>
         </TodoItemBlock>

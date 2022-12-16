@@ -1,5 +1,6 @@
 import React from "react";
 import tw, { css } from "twin.macro";
+import { useTodoState } from "./TodoContext";
 
 const TodoHeadBlock = tw.div`
     p-12
@@ -19,11 +20,13 @@ const TodoHeadContent = tw.div`
 `
 
 const TodoHead = () => {
+    const todoList = useTodoState();
+    const undoneTaskList = todoList?.filter(todo => !todo.isDone);
     return (
         <TodoHeadBlock>
             <TodoHeadTitle>2022년 12월 12일</TodoHeadTitle>
             <TodoHeadSubTitle>월요일</TodoHeadSubTitle>
-            <TodoHeadContent>할 일 2개 남음</TodoHeadContent>
+            <TodoHeadContent>할 일 {undoneTaskList?.length}개 남음</TodoHeadContent>
         </TodoHeadBlock>
     );
 };

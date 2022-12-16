@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import tw from "tailwind-styled-components";
 import { IoAdd } from 'react-icons/io5';
+import { useTodoDispatch } from "./TodoContext";
 
 type Props = {
-    id: number;
-    text: string;
-    isDone: boolean;
+  id: number;
+  text: string;
+  isDone: boolean;
 }
 
 const CreateWrapper = tw.div`
@@ -26,6 +27,9 @@ const InsertForm = tw.form`
 const Input = tw.input`
     border-2
     w-full
+    outline-none
+    p-2
+    rounded-md
 `
 
 const ButtonContainer = tw.div`
@@ -33,7 +37,7 @@ const ButtonContainer = tw.div`
 `
 
 interface CheckCircleProps {
-    $isOpen: boolean
+  $isOpen: boolean
 }
 const CircleButton = tw.div<CheckCircleProps>`
     absolute right-0 bottom-0
@@ -48,34 +52,56 @@ const CircleButton = tw.div<CheckCircleProps>`
     cursor-pointer
 
     ${(props) => (
-        props.$isOpen && `
+    props.$isOpen && `
             bg-red-100 hover:bg-red-200
             rotate-45
         `
-    )}
+  )}
 `
 
 const TodoCreate = () => {
-    const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [text, setText] = useState<string>('');
 
-    const onToggle = () => setOpen(!open);
+  const dispatch = useTodoDispatch();
 
-    return (
-        <CreateWrapper>
-            {open && (
-                <InsertFormPositioner>
-                    <InsertForm>
-                        <Input autoFocus placeholder="할 일을 입력 후, Enter를 누르세요"/>
-                    </InsertForm>
-                </InsertFormPositioner>
-            )}
-            <ButtonContainer>
-                <CircleButton onClick={onToggle} $isOpen={open}>
-                    <IoAdd/>
-                </CircleButton>
-            </ButtonContainer>
-        </CreateWrapper>
-    );
+  const onToggle = () => setOpen(!open);
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  }
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // 새로고침 방지
+    dispatch?.({
+      type: 'CREATE',
+      text: text,
+    });
+
+    setText('');
+    setOpen(false);
+  }
+
+
+  return (
+    <CreateWrapper>
+      {open && (
+        <InsertFormPositioner onSubmit={onSubmit}>
+          <InsertForm>
+            <Input
+              autoFocus
+              onChange={onChange}
+              placeholder="할 일을 입력 후, Enter를 누르세요"
+              value={text}
+            />
+          </InsertForm>
+        </InsertFormPositioner>
+      )}
+      <ButtonContainer>
+        <CircleButton onClick={onToggle} $isOpen={open}>
+          <IoAdd />
+        </CircleButton>
+      </ButtonContainer>
+    </CreateWrapper>
+  );
 };
 
 export default TodoCreate;
