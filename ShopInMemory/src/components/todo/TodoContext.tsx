@@ -1,7 +1,5 @@
 import React, { useReducer, createContext, Dispatch, useContext, useRef } from 'react';
 
-let nextId = 5;
-
 type TodoState = {
   id: number;
   text: string;
@@ -21,7 +19,7 @@ function todoReducer(state: TodoListState, action: TodoListAction): TodoListStat
   switch (action.type) {
     case 'CREATE':
       return state.concat({
-        id: nextId++,
+        id: state.length + 1,
         text: action.text,
         isDone: false,
       });

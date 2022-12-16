@@ -52,7 +52,6 @@ const TodoItemBlock = tw.div`
 `
 
 const TodoItem = ({id, text, isDone}: Props) => {
-    console.log(id, text, isDone);
     const dispatch = useTodoDispatch();
     const onToggle = ()  => dispatch?.({ type: 'TOGGLE', id, isDone});
     const onRemove = () => dispatch?.({ type: 'REMOVE', id: id });
