@@ -3,7 +3,7 @@ import tw, { css } from "twin.macro";
 
 const TodoHeadBlock = tw.div`
     p-12
-    border-2
+    border-b-2
 `;
 
 const TodoHeadTitle = tw.div`

@@ -5,6 +5,7 @@ import TodoItem from "./TodoItem";
 const TodoListBlock = tw.div`
   flex flex-col
   py-2 px-6
+  h-3/5
 `
 
 const TodoList = () => {
