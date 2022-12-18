@@ -1,16 +1,15 @@
 import React from "react";
 import tw, { css } from "twin.macro";
 
+const HomeWrapper = tw.div`
+    text-3xl
+`
+
 const HomePage = () => {
     return (
-        <>
-            <button
-                className="btn-base"
-            > Hello</button>
-            <button
-                className="btn-base"
-            > World</button>
-        </>
+        <HomeWrapper>
+            Home Page 입니다.
+        </HomeWrapper>
     );
 };
 
