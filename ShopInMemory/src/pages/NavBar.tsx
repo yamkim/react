@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import tw, { css } from "twin.macro";
-import { IoLogIn, IoLogOut } from 'react-icons/io5';
+import { IoLogIn, IoLogOut, IoPersonAdd } from 'react-icons/io5';
 import { Link } from "react-router-dom";
 import Axios from 'axios';
 
@@ -15,6 +15,12 @@ const Logout = tw.div`
 `
 
 const Login = tw.div`
+  flex items-center justify-center
+  text-xl
+  cursor-pointer
+`
+
+const Signup = tw.div`
   flex items-center justify-center
   text-xl
   cursor-pointer
@@ -46,11 +52,18 @@ const NavBar = () => {
           <IoLogOut /> 로그아웃
         </Logout>
         :
-        <Link to='/login'>
-          <Login>
-            <IoLogIn /> 로그인
-          </Login>
-        </Link>
+        <>
+          <Link to='/login'>
+            <Login>
+              <IoLogIn /> 로그인
+            </Login>
+          </Link>
+          <Link to='/signup'>
+            <Signup>
+              <IoPersonAdd /> 회원가입
+            </Signup>
+          </Link>
+        </>
 
       }
 
