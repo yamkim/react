@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 import NavBar from "./pages/NavBar";
 import HomePage from "./pages/HomePage"
-import "../public/css/index.css";
 import TodoPage from "./pages/TodoPage";
 import LoginPage from "./pages/users/LoginPage";
 import SignupPage from "./pages/users/SignupPage";
