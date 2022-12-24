@@ -3,20 +3,30 @@ import Axios from 'axios';
 import tw, { css } from "twin.macro";
 
 const LoginTemplate = tw.div`
+  p-10
+`
 
+const LoginTitle = tw.div`
+  text-2xl
 `
 
 const LoginForm = tw.form`
-  w-20
+  w-48
 `
 
 const EmailInput = tw.input`
+  w-full
+  border-2
 `
 
 const PasswordInput = tw.input`
+  w-full
+  border-2
 `
 
 const SubmitButton = tw.input`
+  border-2
+  w-full
 `
 
 const LoginPage = () => {
@@ -58,7 +68,7 @@ const LoginPage = () => {
 
   return (
     <LoginTemplate>
-      <h1>로그인</h1>
+      <LoginTitle>로그인</LoginTitle>
       <LoginForm onSubmit={onSubmit}>
         <label>이메일 주소:</label>
         <EmailInput
@@ -74,7 +84,7 @@ const LoginPage = () => {
           required
           onChange={e => setPassword(e.target.value)}
         />
-        <SubmitButton type='submit'/>
+        <SubmitButton type='submit' value='로그인'/>
       </LoginForm>
     </LoginTemplate>
   );

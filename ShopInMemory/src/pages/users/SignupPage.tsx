@@ -3,22 +3,35 @@ import tw, { css } from "twin.macro";
 import Axios from 'axios';
 
 const SignupTemplate = tw.div`
+  p-10
+`
+
+const SignupTitle = tw.div`
+  text-2xl
 `
 
 const SignupForm = tw.form`
   flex flex-col
-  w-60
+  w-48
 `
 
 const EmailInput = tw.input`
+  w-full
+  border-2
 `
 
 const Password1Input = tw.input`
+  w-full
+  border-2
 `
 const Password2Input = tw.input`
+  w-full
+  border-2
 `
 
 const SubmitButton = tw.input`
+  border-2
+  w-full
 `
 
 const SignupPage = () => {
@@ -27,7 +40,7 @@ const SignupPage = () => {
   const [password2, setPassword2] = useState<string>('');
   const [errors, setErrors] = useState<boolean>(false);
 
-  const onSubmit = (e:React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
     const user = {
@@ -67,7 +80,7 @@ const SignupPage = () => {
 
   return (
     <SignupTemplate>
-      <h1>회원가입</h1>
+      <SignupTitle>회원가입</SignupTitle>
       <SignupForm onSubmit={onSubmit}>
         <label htmlFor='email'>이메일 주소:</label>
         <EmailInput
@@ -94,7 +107,7 @@ const SignupPage = () => {
           onChange={e => setPassword2(e.target.value)}
           required
         />
-        <SubmitButton type='submit' value='회원가입'/>
+        <SubmitButton type='submit' value='회원가입' />
       </SignupForm>
     </SignupTemplate>
   );
