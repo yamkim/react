@@ -36,7 +36,6 @@ const NavBar = () => {
 
   const handleLogout = () => {
     const token = localStorage.getItem('token');
-    console.log(token)
     Axios.post(`${process.env.REACT_SERVER_DOMAIN}/api/v1/users/auth/logout/`, token)
     .then(() => {
       localStorage.clear()
@@ -64,9 +63,7 @@ const NavBar = () => {
             </Signup>
           </Link>
         </>
-
       }
-
     </MenuList>
   );
 };
